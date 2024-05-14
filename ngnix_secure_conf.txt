@@ -1,0 +1,40 @@
+upstream serverName {
+    server IP:PORT;
+}
+
+server {
+    listen 80;
+    server_name domainName;
+ 
+    return 301 https://$host$request_uri;
+}
+ 
+server {
+    listen 443 ssl;
+ 
+    server_name domainName;
+ 
+    ssl_certificate crtCertificatePath;
+    ssl_certificate_key keyCertificatePath;
+ 
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.3 TLSv1.2;
+ 
+    ssl_session_cache shared:SSL:1m;
+    ssl_session_timeout  10m;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+ 
+    #ssl_stapling on;
+    #ssl_stapling_verify on;
+ 
+    location / {
+        proxy_pass serverName;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        proxy_read_timeout 3600s;
+        send_timeout 1800s;
+    }
+}
