@@ -40,7 +40,7 @@
    	1) Installation : `npm i pm2`
    	2) Go to the directory where node.js file is present.
    	3) To start pm2 as a service : `pm2 startup`
-   	4) Start the pm2 service for node : `pm2 start file_name.js --name `
+   	4) Start the pm2 service for node : `pm2 start file_name.js --name <name> `
    	5) Save the pm2 service : `pm2 save`
    	6) List all pm2 services : `pm2 list`
 	7) To check the logs: `pm2 logs` or `pm2 logs service-name`
