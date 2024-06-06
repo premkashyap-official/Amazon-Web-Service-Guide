@@ -30,6 +30,7 @@ This guide provides a step-by-step process to create an AWS EC2 instance, coveri
    - **For compute-intensive applications**, consider c5.large or c5.xlarge.
    - **For memory-intensive applications**, choose r5.large or r5.xlarge.
 2. **Review the instance type details** to ensure it matches your performance requirements.
+3. **Refer to the [Amaxon Instance Types Documentation](https://aws.amazon.com/ec2/instance-types/) for more details.**
 
 ### Step 5: Configure Instance Details
 1. **Click "Next: Configure Instance Details".**
