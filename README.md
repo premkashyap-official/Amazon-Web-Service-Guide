@@ -32,7 +32,7 @@ This guide provides a step-by-step process to create an AWS EC2 instance, coveri
 2. **Review the instance type details** to ensure it matches your performance requirements.
 
 ### Step 5: Configure Instance Details
-1. **   Click "Next: Configure Instance Details".**
+1. **Click "Next: Configure Instance Details".**
 2. **Configure network settings** as needed. This includes choosing the VPC, subnet, auto-assign Public IP, etc.
 3. **Add storage** if needed. By default, an EBS volume is attached.
 4. **Add tags** to help organize and manage your instances.
@@ -51,17 +51,28 @@ This guide provides a step-by-step process to create an AWS EC2 instance, coveri
 2. **Select your newly launched instance**.
 3. **Copy the Public IP address** of your instance.
 4. **SSH into your instance** using the key pair:
-   - For Linux/Ubuntu:
-     ```bash
-     ssh -i "your-key-pair.pem" ec2-user@your-public-ip
-     ```
-   - For Windows:
-     - Use an SSH client like PuTTY, convert the .pem file to .ppk using PuTTYgen, and then connect using PuTTY.
+   - **For Linux/Ubuntu:**
+     - Using OpenSSH:
+       ```bash
+       ssh -i "your-key-pair.pem" ec2-user@your-public-ip
+       ```
+     - Using PuTTY:
+       - Install PuTTY if not already installed: `sudo apt-get install putty`
+       - Convert the .pem file to .ppk using PuTTYgen:
+         ```bash
+         puttygen your-key-pair.pem -O private -o your-key-pair.ppk
+         ```
+       - Use PuTTY to connect to your instance.
+   - **For Windows:**
+     - Using SSH:
+       - Use an SSH client like PuTTY, convert the .pem file to .ppk using PuTTYgen, and then connect using PuTTY.
+     - Using RDP:
+       - Ensure that you have enabled RDP in the security group settings.
+       - Use the Remote Desktop Connection application to connect to your instance.
+       - Enter the Public IP address of your instance and connect.
 
 ## Additional Resources
 - [AWS EC2 Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)
 - [Amazon OS Types Documentation](https://docs.aws.amazon.com/systems-manager/latest/userguide/operating-systems-and-machine-types.html#prereqs-operating-systems)
 
 By following these steps, you will have a running instance tailored to your specific requirements. If you encounter any issues or need more detailed guidance, refer to the provided documentation links.
-
-
