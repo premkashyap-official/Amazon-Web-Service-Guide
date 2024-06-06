@@ -8,7 +8,7 @@ This guide provides step-by-step instructions to set up Nginx, a powerful web se
 - Access to the server with sudo privileges.
 - **IMPORTANT : This guide is created based on Ubuntu type of instace. So the commands contain `apt` which is an ubuntu commad. For Linux use `yum` and replace in the place of `apt`.**
 
-*Note : If needed you can work as root user using commad. It is not required for most usecases.*
+*Note : If needed you can work as root user using this commad. It is not required for most usecases.*
 ```bash
 sudo su
 ```
