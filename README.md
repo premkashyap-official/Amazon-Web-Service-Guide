@@ -30,40 +30,69 @@ This guide provides a step-by-step process to create an AWS EC2 instance, coveri
    - **For compute-intensive applications**, consider c5.large or c5.xlarge.
    - **For memory-intensive applications**, choose r5.large or r5.xlarge.
 2. **Review the instance type details** to ensure it matches your performance requirements.
-3. **Refer to the [Amaxon Instance Types Documentation](https://aws.amazon.com/ec2/instance-types/) for more details.**
+3. **Refer to the [Amazon Instance Types Documentation](https://aws.amazon.com/ec2/instance-types/) for more instance types details.**
 
-### Step 5: Configure Instance Details
+### Step 5: Create a Key Pair
+1. **Create a key pair to access the instance**
+   When creating an instance on AWS, you'll need to create or select a key pair for SSH access. Follow these steps:
+   - **Option 1:** Create a new key pair during instance creation
+     - Provide a name for the key pair and select the file format (Types : PEM, PPK, RDP).
+     - The private key file will be automatically downloaded to your computer. Store it securely.
+
+   - **Option 2:** Use an existing key pair
+     - If you already have a key pair created on AWS, select "Choose an existing key pair".
+     - Select the key pair you want to use from the dropdown list.
+   **IMPORTANT**
+     * Ensure you have the private key file stored securely. Without the file it is not possible to access the instance.
+     * You'll need the public key associated with this key pair to configure access to your instance.
+
+### Step 6: Configure Instance Details
 1. **Click "Next: Configure Instance Details".**
-2. **Configure network settings** as needed. This includes choosing the VPC, subnet, auto-assign Public IP, etc.
-3. **Add storage** if needed. By default, an EBS volume is attached.
+2. **Configure network settings** as needed. This includes choosing the VPC, subnet, auto-assign Public IP, etc. No need to change these options unless needed.
+3. **Add storage** if needed. By default, an EBS (Elastic Block Store) volume is attached. You can change the storage based on the application need.
+   - Click on "Add New Volume" or "Advanced" to access more options.
+   - Here, you can adjust the size and type of the volume according to your requirements.
+   - If encryption is needed:
+     - Click on the volume you've added to configure it.
+     - Under "Encryption," select the checkbox to enable encryption.
+     - Choose either AWS managed keys (AWS Managed CMK) or customer managed keys (Customer Managed CMK) for encryption.
+     - If using customer managed keys, ensure the key is created and accessible.
 4. **Add tags** to help organize and manage your instances.
 5. **Configure security groups** to control the inbound and outbound traffic to your instance.
-   - **Create a new security group** or select an existing one.
-   - **Add rules** to allow traffic (e.g., SSH for Linux or RDP for Windows).
+   - **Option 1:** Create a new security group
+     - Under "Security groups," select "Create a new security group."
+     - Provide a name and description for the security group.
+    - Add inbound rules to allow specific types of traffic:
+       - For SSH access (Linux), add a rule with source "My IP" for secure connection.
+       - You can also add HTTP and HTTPS rules with source "Anywhere" for web traffic.
+       - For RDP access (Windows), add a rule with source "My IP" if needed.
+       - Customize additional rules based on your requirements.
+     - Add outbound rules as needed.
+     - Click "Create security group" to finalize.
 
-### Step 6: Review and Launch
+   - **Option 2:** Use an existing security group
+     - If you already have a security group created on AWS, select "Choose an existing security group" during instance creation.
+     - Select the security group you want to use from the dropdown list.
+     - Ensure the selected security group has appropriate inbound rules configured to allow the necessary traffic.
+     - Click "Review and Launch" to proceed with the selected security group.
+
+### Step 7: Review and Launch
 1. **Review all your settings.**
 2. **Click "Launch".**
-3. **Choose an existing key pair or create a new one** to SSH into your instance.
-4. **Acknowledge the key pair warning** and click "Launch Instances".
+3. **Acknowledge the key pair warning** and click "Launch Instances".
 
 ### Step 7: Access Your Instance
 1. **Navigate to the Instances section** in the EC2 Dashboard.
 2. **Select your newly launched instance**.
 3. **Copy the Public IP address** of your instance.
-4. **SSH into your instance** using the key pair:
+4. **SSH into your instance** using the key pair: in local system
    - **For Linux/Ubuntu:**
-     - Using OpenSSH:
-       ```bash
-       ssh -i "your-key-pair.pem" ec2-user@your-public-ip
-       ```
-     - Using PuTTY:
-       - Install PuTTY if not already installed: `sudo apt-get install putty`
-       - Convert the .pem file to .ppk using PuTTYgen:
-         ```bash
-         puttygen your-key-pair.pem -O private -o your-key-pair.ppk
-         ```
-       - Use PuTTY to connect to your instance.
+      - **Using OpenSSH:**
+        ```bash
+        ssh -i "path/to/your-key-pair.pem" ec2-user@your-public-ip
+        ```
+        Replace `"path/to/your-key-pair.pem"` with the path to your private key file and `your-public-ip` with the public IP address or hostname of your EC2 instance.
+      - Alternatively, you can use the "Connect" button in the AWS Management Console to copy the SSH command directly.
    - **For Windows:**
      - Using SSH:
        - Use an SSH client like PuTTY, convert the .pem file to .ppk using PuTTYgen, and then connect using PuTTY.
