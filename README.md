@@ -2,4 +2,5 @@
 
 This guide covers the basics of Amazon EC2, including instance creation, configuration, and management.<br>
  * EC2 Instance creation guide - [Ec2 Instance Creation](ec2%20Instance/ec2_instance_creation.md)
+ * Node Installation Guide - [Node Installation]()
  * Nginx Configuration guide - [Nginx Configuration](ec2%20Instance/nginx_configuration.md)
