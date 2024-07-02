@@ -53,3 +53,4 @@ This guide provides a step-by-step process to install Node.js in an AWS EC2 inst
    nvm use xx.xx.x
    ```
    here xx.xx.x is version of node.
+**NOTE : You need to install the node version that you want to use before switching.**
