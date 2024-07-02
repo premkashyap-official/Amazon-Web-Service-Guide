@@ -48,10 +48,10 @@ This guide provides a step-by-step process to install Node.js in an AWS EC2 inst
    ```bash
    nvm ls
    ```
-8. Choose a version from installed nodejs versions and use this command:
+8. Choose a version from installed Node.js versions and use this command:
    ```bash
    nvm use xx.xx.x
    ```
-   here xx.xx.x is version of node.
+
 
 **NOTE : You need to install the node version that you want to use before switching.**
