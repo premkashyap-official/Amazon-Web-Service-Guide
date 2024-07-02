@@ -15,7 +15,6 @@ This guide provides a step-by-step process to install Node.js in an AWS EC2 inst
    ```bash
    ssh -i /path/to/your-key.pem ec2-user@your-ec2-ip-address
     ```
-## Steps to Install Node.js in AWS EC2 Instance
 
 ### Step 2: Install NVM (Node Version Manager)
 1. Update the package index:
