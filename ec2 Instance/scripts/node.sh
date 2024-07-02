@@ -1,10 +1,45 @@
 #!/bin/bash
 
-# Update package lists
-sudo apt update -y
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
 
-# Install curl if not already installed
-sudo apt install curl -y
+# Function to install packages using apt (for Ubuntu/Debian)
+install_ubuntu() {
+    sudo apt update -y
+    sudo apt install curl -y
+}
+
+# Function to install packages using yum (for CentOS)
+install_centos() {
+    sudo yum update -y
+    sudo yum install curl -y
+}
+
+# Detect Linux distribution
+if command_exists lsb_release; then
+    DISTRO=$(lsb_release -si)
+elif [ -e /etc/os-release ]; then
+    DISTRO=$(awk -F= '$1 == "ID" {print $2}' /etc/os-release | tr -d '"')
+else
+    echo "Unsupported Linux distribution. Please install packages manually."
+    exit 1
+fi
+
+# Install necessary packages based on distribution
+case "$DISTRO" in
+    Ubuntu)
+        install_ubuntu
+        ;;
+    CentOS)
+        install_centos
+        ;;
+    *)
+        echo "Unsupported distribution: $DISTRO. Please install packages manually."
+        exit 1
+        ;;
+esac
 
 # Install nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
@@ -13,7 +48,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 source ~/.bashrc
 
 # Check if nvm is installed
-if ! command -v nvm &> /dev/null; then
+if ! command_exists nvm; then
     echo "nvm is not installed. Please check the installation."
     exit 1
 fi
