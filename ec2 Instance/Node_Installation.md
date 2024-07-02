@@ -25,18 +25,31 @@ This guide provides a step-by-step process to install Node.js in an AWS EC2 inst
 2. Install NVM using the following curl command:
 
    ```bash
-     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
    ```
 3. Close and reopen your terminal or source the NVM script:
    ```bash
-      source ~/.bashrc
+   source ~/.bashrc
    ```
 4. Verify that NVM is installed:
    ```bash
-      command -v nvm
+   command -v nvm
    ```
 5. Install a specific version of Node.js (e.g., version 14.17.0):
    ```bash
-      nvm install 14.17.0
+   nvm install 14.17.0
    ```
    If you need to check other versions, visit [Node.js Previous Releases](https://nodejs.org/en/about/previous-releases).
+6. Set the default Node.js version to the installed version:
+   ```bash
+   nvm alias default 14.17.0
+   ```
+7. Switch Node.js Version with NVM
+   ```bash
+   nvm ls
+   ```
+8. Choose a version from installed nodejs versions and use this command:
+   ```bash
+   nvm use xx.xx.x
+   ```
+   here xx.xx.x is version of node.
