@@ -24,7 +24,6 @@ elif [ -e /etc/os-release ]; then
     DISTRO=$(awk -F= '$1 == "ID" {print $2}' /etc/os-release | tr -d '"')
 else
     echo "Unsupported Linux distribution. Please install packages manually."
-    exit 1
 fi
 
 # Install necessary packages based on distribution
@@ -32,12 +31,11 @@ case "$DISTRO" in
     Ubuntu)
         install_ubuntu
         ;;
-    CentOS)
+    amzn)
         install_centos
         ;;
     *)
         echo "Unsupported distribution: $DISTRO. Please install packages manually."
-        exit 1
         ;;
 esac
 
