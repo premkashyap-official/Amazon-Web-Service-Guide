@@ -14,7 +14,6 @@ install_ubuntu() {
 # Function to install packages using yum (for CentOS)
 install_centos() {
     sudo yum update -y
-    sudo yum install curl -y
 }
 
 # Detect Linux distribution
