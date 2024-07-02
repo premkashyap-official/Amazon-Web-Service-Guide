@@ -20,10 +20,10 @@ This guide provides a step-by-step process to install Node.js in an AWS EC2 inst
 1. Update the package index:
 
    ```bash
-   sudo yum update -y
+   sudo apt update -y
    ```
 2. Install NVM using the following curl command:
 
-  ```bash
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-  ```
+   ```bash
+     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+   ```
