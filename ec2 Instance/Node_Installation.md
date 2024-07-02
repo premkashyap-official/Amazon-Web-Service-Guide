@@ -1,15 +1,30 @@
-# README: How to install in AWS EC2 Instance
+# README: How to Install Node.js in AWS EC2 Instance
 
-This guide provides a step-by-step process to install node in AWS EC2 instance using NVM.
+This guide provides a step-by-step process to install Node.js in an AWS EC2 instance using NVM.
 
 ## Prerequisites
-- Connect to aws instance which was created using putty or pem file
-- Basic understanding on node.
+- Connect to the AWS instance using PuTTY or a PEM file.
+- Basic understanding of Node.js.
 
-## Steps to install node in AWS EC2 Instance
+## Steps to Install Node.js in AWS EC2 Instance
 
-### Step 1: Create a Unique Name for the Instance
-1. **Log in to your AWS Management Console.**
-2. **Navigate to the EC2 Dashboard.**
-3. **Click on "Launch Instance".**
-4. **Enter a unique name for your instance in the "Name and tags" section.**
+### Step 1: Connect to Your EC2 Instance
+1. Open PuTTY or your preferred SSH client.
+2. Connect to your EC2 instance using the PEM file.
+
+   ```bash
+   ssh -i /path/to/your-key.pem ec2-user@your-ec2-ip-address
+    ```
+## Steps to Install Node.js in AWS EC2 Instance
+
+### Step 2: Install NVM (Node Version Manager)
+1. Update the package index:
+
+   ```bash
+   sudo yum update -y
+   ```
+2. Install NVM using the following curl command:
+
+  ```bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  ```
