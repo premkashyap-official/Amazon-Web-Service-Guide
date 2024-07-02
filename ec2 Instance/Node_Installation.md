@@ -1,6 +1,6 @@
 # README: Install Node.js in AWS EC2 Instance using a script file
 
-Run this file in ec2 instance to automatically download and install Node.js in ec2 using NVM.
+Clone the repository and run this file in ec2 instance to automatically download and install Node.js in ec2 using NVM.
 ```bash
 source node.sh <version>
 ```
