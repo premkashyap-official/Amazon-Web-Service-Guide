@@ -4,7 +4,7 @@ Clone the repository in ec2 instance and run this file [node.sh](./scripts/node.
 ```bash
 source node.sh <version>
 ```
-Note : Specify the version that need to be installed.
+Note : Specify the version that need to be installed. If not specified latest version will be installed.
 
 
 # README: How to Install Node.js in AWS EC2 Instance
