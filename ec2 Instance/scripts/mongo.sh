@@ -18,7 +18,7 @@ install_ubuntu() {
 
 install_centos() {
     sudo yum update -y
-    echo "[mongodb-org-7.0] name=MongoDB Repository baseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/7.0/x86_64/ gpgcheck=1 enabled=1 gpgkey=https://pgp.mongodb.com/server-7.0.asc" | sudo tee /etc/yum.repos.d/mongodb-org-7.0.repo > /dev/null
+    echo -e "[mongodb-org-7.0]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.org/yum/amazon/2023/mongodb-org/7.0/x86_64/\ngpgcheck=1\nenabled=1\ngpgkey=https://pgp.mongodb.com/server-7.0.asc" | sudo tee /etc/yum.repos.d/mongodb-org-7.0.repo > /dev/null
     sudo yum install -y mongodb-org
     if ! sudo systemctl start mongod; then
         echo "Failed to start MongoDB service."
