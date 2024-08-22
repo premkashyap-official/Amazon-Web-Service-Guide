@@ -2,7 +2,7 @@
 
 This guide outlines the steps to set up and use the Stable Video Diffusion model for creating videos from images. The instructions include pulling the necessary Docker image, using Python code to interact with the model, and making REST API requests.
 
-## Step 1: Pull the Docker Image
+## Pull the Docker Image
 
 To start, pull the Docker image that contains the preconfigured environment for Stable Video Diffusion.
 
@@ -14,7 +14,9 @@ docker run -d -p 5000:5000 --gpus=all saipavan044/stable-img2video-xt:latest
 - **`-p 5000:5000`**: Maps port 5000 of the host to port 5000 of the container.
 - **`--gpus=all`**: Enables GPU acceleration for the container.
 
-## Step 2: Python Code to Generate Video from Image
+---
+
+## Python Code to Generate Video from Image
 
 The following Python script converts an image into a video using the Stable Video Diffusion model. The script encodes the image into a base64 string, sends it to the model via an HTTP POST request, and then decodes the base64-encoded video returned by the model.
 
@@ -93,7 +95,9 @@ except Exception as e:
 - **`decode_chunk_size`**: Size of the chunk for decoding.
 - **`num_inference_steps`**: Number of steps for inference.
 
-## Step 3: REST API Request Example
+---
+
+## REST API Request Example
 
 If you prefer making direct API requests, here is an example of how to structure the request body:
 
@@ -127,7 +131,9 @@ Replace the image URL with your own or use a base64-encoded string as shown in t
 
 The response from the server will include a base64-encoded video that can be decoded and saved using the Python script provided.
 
-## Step 4: cURL Command for API Request
+---
+
+## cURL Command for API Request
 
 You can use the following `curl` command to send a request to the Stable Video Diffusion model's API and receive a base64-encoded video in response:
 
@@ -183,7 +189,3 @@ curl -X POST http://206.1.53.31/predictions \
 ```
 
 This command saves the server's JSON response to `response.json`, which you can then process to extract the base64 video data.
-
----
-
-This `curl` command provides a quick and easy way to test the API or integrate it into scripts and automation pipelines.
