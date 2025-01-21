@@ -1,0 +1,25 @@
+[Unit]
+Description=Gunicorn instance for Skillflo-Python backend
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/home/ubuntu/evx-application/python/skillflo
+ExecStart=/home/ubuntu/anaconda3/envs/skillflo/bin/gunicorn \
+    --workers 5 \
+    --bind 127.0.0.1:6000 \
+    --timeout 300 \
+    app:app
+Environment=PATH=/home/ubuntu/anaconda3/envs/skillflo/bin:$PATH
+Restart=always
+RestartSec=5
+TimeoutStartSec=30
+LimitNOFILE=4096
+StandardOutput=append:/var/log/skillflo/gunicorn.log
+StandardError=append:/var/log/skillflo/gunicorn.err
+
+[Install]
+WantedBy=multi-user.target
