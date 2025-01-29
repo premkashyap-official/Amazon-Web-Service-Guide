@@ -1,25 +1,12 @@
 [Unit]
-Description=Gunicorn instance for Storyboard-Python backend
+Description=Gunicorn instance for Storyboard Python backend application
 After=network.target
-Wants=network.target
 
 [Service]
-Type=simple
-User=root
-Group=root
+User=ubuntu
+Group=ubuntu
 WorkingDirectory=/home/ubuntu/evx-application/python/storyboard
-ExecStart=/home/ubuntu/anaconda3/envs/skillflo/bin/gunicorn \
-    --workers 5 \
-    --bind 127.0.0.1:6001 \
-    --timeout 300 \
-    app:app
-Environment=PATH=/home/ubuntu/anaconda3/envs/skillflo/bin:$PATH
-Restart=always
-RestartSec=5
-TimeoutStartSec=30
-LimitNOFILE=4096
-StandardOutput=append:/var/log/skillflo/gunicorn.log
-StandardError=append:/var/log/skillflo/gunicorn.err
+ExecStart=/home/ubuntu/anaconda3/envs/skillflo/bin/gunicorn --workers 1 --bind 0.0.0.0:6001 --timeout 30000 app:app
 
 [Install]
 WantedBy=multi-user.target
